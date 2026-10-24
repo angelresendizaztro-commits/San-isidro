@@ -111,7 +111,7 @@
                         El verdadero sabor de las <span class="text-brand-green italic">Aguas Tradicionales</span>.
                     </h1>
                     <p class="text-lg text-gray-600 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
-                        En <strong>San Isidro</strong> preparamos aguas de sabor 100% artesanales con la mejor calidad. Refrescantes, naturales y disponibles en presentaciones de <strong>500ml ($18)</strong> y <strong>1 Litro ($36)</strong>.
+                        En **San Isidro** preparamos aguas de sabor 100% artesanales con la mejor calidad. Refrescantes, naturales y disponibles en presentaciones de <strong>500ml ($18)</strong> y <strong>1 Litro ($36)</strong>.
                     </p>
                     
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
@@ -329,64 +329,346 @@
         </div>
     </section>
 
-    <!-- Script de control para el cotizador -->
+    <!-- Orders & Calculator Section -->
+    <section id="pedidos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Left Info text -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs font-bold text-brand-green uppercase tracking-widest">Pedidos directos</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">Cotiza tu pedido y pídelo por WhatsApp</h2>
+                    <p class="text-gray-600 leading-relaxed">
+                        Selecciona el número de botellas de <strong>500ml ($18)</strong> o de <strong>1 Litro ($36)</strong> que necesites. Envía tu pedido directamente y te atenderemos enseguida.
+                    </p>
+                    
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-emerald-100 text-brand-green flex items-center justify-center shrink-0 mt-1">
+                                <i data-lucide="clock" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900 text-sm">Hechas al día</p>
+                                <p class="text-gray-500 text-xs">Aseguramos la máxima frescura en todos tus pedidos.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-emerald-100 text-brand-green flex items-center justify-center shrink-0 mt-1">
+                                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900 text-sm">Pedidos especiales y eventos</p>
+                                <p class="text-gray-500 text-xs">Ideal para fiestas, reuniones y consumo diario.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Calculator Form -->
+                <div class="lg:col-span-7 bg-brand-cream p-6 sm:p-8 rounded-3xl border border-gray-200/80 shadow-lg">
+                    <form id="order-form" onsubmit="sendWhatsAppOrder(event)">
+                        <h3 class="font-serif text-xl font-bold text-gray-900 mb-6 pb-3 border-b border-gray-200">Cotizador de Pedidos San Isidro</h3>
+                        
+                        <!-- Products Quantity Inputs -->
+                        <div class="space-y-5 mb-6">
+                            
+                            <!-- Horchata -->
+                            <div class="p-4 bg-white rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                                <p class="font-bold text-gray-900 text-base">Agua de Horchata</p>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="flex items-center justify-between bg-gray-50 p-2.5 rounded-xl border border-gray-100">
+                                        <div>
+                                            <p class="text-xs font-semibold text-gray-700">500 ml</p>
+                                            <p class="text-[11px] text-brand-green font-bold">$18 MXN</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button type="button" onclick="updateQty('horchata_500', -1)" class="w-7 h-7 rounded-full bg-gray-200 text-gray-700 font-bold text-sm">-</button>
+                                            <span id="qty-horchata_500" class="w-5 text-center font-bold text-sm">0</span>
+                                            <button type="button" onclick="updateQty('horchata_500', 1)" class="w-7 h-7 rounded-full bg-brand-green text-white font-bold text-sm">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between bg-gray-50 p-2.5 rounded-xl border border-gray-100">
+                                        <div>
+                                            <p class="text-xs font-semibold text-gray-700">1 Litro</p>
+                                            <p class="text-[11px] text-brand-green font-bold">$36 MXN</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button type="button" onclick="updateQty('horchata_1l', -1)" class="w-7 h-7 rounded-full bg-gray-200 text-gray-700 font-bold text-sm">-</button>
+                                            <span id="qty-horchata_1l" class="w-5 text-center font-bold text-sm">0</span>
+                                            <button type="button" onclick="updateQty('horchata_1l', 1)" class="w-7 h-7 rounded-full bg-brand-green text-white font-bold text-sm">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Limón -->
+                            <div class="p-4 bg-white rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                                <p class="font-bold text-gray-900 text-base">Agua de Limón</p>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="flex items-center justify-between bg-gray-50 p-2.5 rounded-xl border border-gray-100">
+                                        <div>
+                                            <p class="text-xs font-semibold text-gray-700">500 ml</p>
+                                            <p class="text-[11px] text-brand-green font-bold">$18 MXN</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button type="button" onclick="updateQty('limon_500', -1)" class="w-7 h-7 rounded-full bg-gray-200 text-gray-700 font-bold text-sm">-</button>
+                                            <span id="qty-limon_500" class="w-5 text-center font-bold text-sm">0</span>
+                                            <button type="button" onclick="updateQty('limon_500', 1)" class="w-7 h-7 rounded-full bg-brand-green text-white font-bold text-sm">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between bg-gray-50 p-2.5 rounded-xl border border-gray-100">
+                                        <div>
+                                            <p class="text-xs font-semibold text-gray-700">1 Litro</p>
+                                            <p class="text-[11px] text-brand-green font-bold">$36 MXN</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button type="button" onclick="updateQty('limon_1l', -1)" class="w-7 h-7 rounded-full bg-gray-200 text-gray-700 font-bold text-sm">-</button>
+                                            <span id="qty-limon_1l" class="w-5 text-center font-bold text-sm">0</span>
+                                            <button type="button" onclick="updateQty('limon_1l', 1)" class="w-7 h-7 rounded-full bg-brand-green text-white font-bold text-sm">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Jamaica -->
+                            <div class="p-4 bg-white rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                                <p class="font-bold text-gray-900 text-base">Agua de Jamaica</p>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="flex items-center justify-between bg-gray-50 p-2.5 rounded-xl border border-gray-100">
+                                        <div>
+                                            <p class="text-xs font-semibold text-gray-700">500 ml</p>
+                                            <p class="text-[11px] text-brand-green font-bold">$18 MXN</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button type="button" onclick="updateQty('jamaica_500', -1)" class="w-7 h-7 rounded-full bg-gray-200 text-gray-700 font-bold text-sm">-</button>
+                                            <span id="qty-jamaica_500" class="w-5 text-center font-bold text-sm">0</span>
+                                            <button type="button" onclick="updateQty('jamaica_500', 1)" class="w-7 h-7 rounded-full bg-brand-green text-white font-bold text-sm">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between bg-gray-50 p-2.5 rounded-xl border border-gray-100">
+                                        <div>
+                                            <p class="text-xs font-semibold text-gray-700">1 Litro</p>
+                                            <p class="text-[11px] text-brand-green font-bold">$36 MXN</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button type="button" onclick="updateQty('jamaica_1l', -1)" class="w-7 h-7 rounded-full bg-gray-200 text-gray-700 font-bold text-sm">-</button>
+                                            <span id="qty-jamaica_1l" class="w-5 text-center font-bold text-sm">0</span>
+                                            <button type="button" onclick="updateQty('jamaica_1l', 1)" class="w-7 h-7 rounded-full bg-brand-green text-white font-bold text-sm">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tamarindo -->
+                            <div class="p-4 bg-white rounded-2xl border border-gray-200 shadow-sm space-y-3">
+                                <p class="font-bold text-gray-900 text-base">Agua de Tamarindo</p>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="flex items-center justify-between bg-gray-50 p-2.5 rounded-xl border border-gray-100">
+                                        <div>
+                                            <p class="text-xs font-semibold text-gray-700">500 ml</p>
+                                            <p class="text-[11px] text-brand-green font-bold">$18 MXN</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button type="button" onclick="updateQty('tamarindo_500', -1)" class="w-7 h-7 rounded-full bg-gray-200 text-gray-700 font-bold text-sm">-</button>
+                                            <span id="qty-tamarindo_500" class="w-5 text-center font-bold text-sm">0</span>
+                                            <button type="button" onclick="updateQty('tamarindo_500', 1)" class="w-7 h-7 rounded-full bg-brand-green text-white font-bold text-sm">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between bg-gray-50 p-2.5 rounded-xl border border-gray-100">
+                                        <div>
+                                            <p class="text-xs font-semibold text-gray-700">1 Litro</p>
+                                            <p class="text-[11px] text-brand-green font-bold">$36 MXN</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button type="button" onclick="updateQty('tamarindo_1l', -1)" class="w-7 h-7 rounded-full bg-gray-200 text-gray-700 font-bold text-sm">-</button>
+                                            <span id="qty-tamarindo_1l" class="w-5 text-center font-bold text-sm">0</span>
+                                            <button type="button" onclick="updateQty('tamarindo_1l', 1)" class="w-7 h-7 rounded-full bg-brand-green text-white font-bold text-sm">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Customer Details -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">Tu Nombre</label>
+                                <input type="text" id="cust-name" required placeholder="Ingresa tu nombre" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-green">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">Notas o Dirección</label>
+                                <input type="text" id="cust-address" placeholder="Ej. Punto de entrega o para evento" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-green">
+                            </div>
+                        </div>
+
+                        <!-- Summary & Total -->
+                        <div class="bg-white p-4 rounded-2xl border border-gray-200 mb-6 space-y-2">
+                            <div class="flex justify-between text-sm text-gray-600">
+                                <span>Total de piezas:</span>
+                                <span id="total-items" class="font-semibold text-gray-800">0 botellas</span>
+                            </div>
+                            <div class="flex justify-between text-base font-bold text-gray-900 pt-2 border-t border-gray-100">
+                                <span>Total a pagar:</span>
+                                <span id="total-price" class="text-brand-green text-2xl font-extrabold">$0.00 MXN</span>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 px-6 rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-base">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                            <span>Pedir por WhatsApp</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 pb-8 border-b border-gray-800 items-center">
+                
+                <!-- Brand Info with Logo -->
+                <div class="flex items-center gap-4">
+                    <img src="San Isidro logo (1).png" alt="San Isidro Logo" class="w-16 h-16 object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/0B6638/ffffff?text=SAN+ISIDRO';">
+                    <div>
+                        <span class="font-serif text-xl font-bold text-white tracking-wide block">SAN ISIDRO</span>
+                        <span class="text-xs text-gray-400">Aguas de Sabor Artesanales</span>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="text-center md:text-left">
+                    <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-2">Navegación</h4>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4 text-xs text-gray-400">
+                        <a href="#inicio" class="hover:text-white transition-colors">Inicio</a>
+                        <a href="#sabores" class="hover:text-white transition-colors">Sabores</a>
+                        <a href="#beneficios" class="hover:text-white transition-colors">Beneficios</a>
+                        <a href="#pedidos" class="hover:text-white transition-colors">Hacer Pedido</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="text-center md:text-right">
+                    <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-2">Contacto Directo</h4>
+                    <p class="text-xs text-gray-400">Atención personalizada para pedidos locales y eventos.</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+                <p>&copy; 2026 San Isidro Aguas de Sabor. Todos los derechos reservados.</p>
+                <p>Frescura y Tradición Natural</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
     <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Prices setup
+        const prices = {
+            horchata_500: 18, horchata_1l: 36,
+            limon_500: 18, limon_1l: 36,
+            jamaica_500: 18, jamaica_1l: 36,
+            tamarindo_500: 18, tamarindo_1l: 36
+        };
+
         const quantities = {
-            horchata_500: 0,
-            horchata_1l: 0,
-            limon_500: 0,
-            limon_1l: 0
+            horchata_500: 0, horchata_1l: 0,
+            limon_500: 0, limon_1l: 0,
+            jamaica_500: 0, jamaica_1l: 0,
+            tamarindo_500: 0, tamarindo_1l: 0
         };
 
         function updateQty(item, change) {
             if (quantities[item] + change >= 0) {
                 quantities[item] += change;
-                const span = document.getElementById(`qty-${item}`);
-                if (span) span.textContent = quantities[item];
+                document.getElementById(`qty-${item}`).innerText = quantities[item];
+                calculateTotal();
             }
         }
 
-        function quickSelect(flavor) {
-            const key = flavor + '_500';
-            if (quantities[key] !== undefined) {
-                quantities[key]++;
-                const span = document.getElementById(`qty-${key}`);
-                if (span) span.textContent = quantities[key];
-            }
+        function quickSelect(flavorKey) {
+            updateQty(`${flavorKey}_500`, 1);
+            document.getElementById('pedidos').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function sendWhatsAppOrder(event) {
-            event.preventDefault();
-            let message = "Hola, me gustaría hacer el siguiente pedido de Aguas San Isidro:\n";
-            let totalItems = 0;
+        function calculateTotal() {
+            let totalQty = 0;
             let totalPrice = 0;
 
-            const prices = {
-                _500: 18,
-                _1l: 36
-            };
-
-            for (const [key, qty] of Object.entries(quantities)) {
-                if (qty > 0) {
-                    totalItems += qty;
-                    const parts = key.split('_');
-                    const flavorName = parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
-                    const size = parts[1] === '500' ? '500 ml' : '1 Litro';
-                    const price = qty * prices['_' + parts[1]];
-                    totalPrice += price;
-                    message += `- ${qty}x ${flavorName} (${size}): $${price} MXN\n`;
-                }
+            for (const key in quantities) {
+                totalQty += quantities[key];
+                totalPrice += quantities[key] * prices[key];
             }
 
-            if (totalItems === 0) {
-                alert("Por favor selecciona al menos una botella para tu pedido.");
+            document.getElementById('total-items').innerText = `${totalQty} piezas`;
+            document.getElementById('total-price').innerText = `$${totalPrice.toFixed(2)} MXN`;
+        }
+
+        // WhatsApp Order Link Generator
+        function sendWhatsAppOrder(event) {
+            event.preventDefault();
+
+            let totalQty = 0;
+            for (const key in quantities) {
+                totalQty += quantities[key];
+            }
+
+            if (totalQty === 0) {
+                alert('Por favor selecciona al menos una agua para tu pedido.');
                 return;
             }
 
-            message += `\nTotal estimado: $${totalPrice} MXN`;
-            const phone = "8677537606";
-            const encoded = encodeURIComponent(message);
-            window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
+            const name = document.getElementById('cust-name').value;
+            const address = document.getElementById('cust-address').value;
+
+            let orderText = `*¡Hola! Quisiera realizar un pedido de Aguas San Isidro*%0A%0A`;
+            orderText += `*Cliente:* ${name}%0A`;
+            if (address) orderText += `*Notas/Dirección:* ${address}%0A`;
+            orderText += `%0A*Detalle del pedido:*%0A`;
+
+            if (quantities.horchata_500 > 0) orderText += `- Agua de Horchata 500ml ($18): ${quantities.horchata_500} pza(s)%0A`;
+            if (quantities.horchata_1l > 0) orderText += `- Agua de Horchata 1 Litro ($36): ${quantities.horchata_1l} pza(s)%0A`;
+
+            if (quantities.limon_500 > 0) orderText += `- Agua de Limón 500ml ($18): ${quantities.limon_500} pza(s)%0A`;
+            if (quantities.limon_1l > 0) orderText += `- Agua de Limón 1 Litro ($36): ${quantities.limon_1l} pza(s)%0A`;
+
+            if (quantities.jamaica_500 > 0) orderText += `- Agua de Jamaica 500ml ($18): ${quantities.jamaica_500} pza(s)%0A`;
+            if (quantities.jamaica_1l > 0) orderText += `- Agua de Jamaica 1 Litro ($36): ${quantities.jamaica_1l} pza(s)%0A`;
+
+            if (quantities.tamarindo_500 > 0) orderText += `- Agua de Tamarindo 500ml ($18): ${quantities.tamarindo_500} pza(s)%0A`;
+            if (quantities.tamarindo_1l > 0) orderText += `- Agua de Tamarindo 1 Litro ($36): ${quantities.tamarindo_1l} pza(s)%0A`;
+
+            let totalPrice = 0;
+            for (const key in quantities) {
+                totalPrice += quantities[key] * prices[key];
+            }
+
+            orderText += `%0A*Total estimado:* $${totalPrice.toFixed(2)} MXN`;
+
+            const whatsappUrl = `https://wa.me/?text=${orderText}`;
+            window.open(whatsappUrl, '_blank');
         }
     </script>
 </body>
